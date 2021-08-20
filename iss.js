@@ -33,6 +33,10 @@ const fetchCoordsByIP = (ip, callback) => {
   });
 };
 
+const fetchISSFlyOverTimes = function(coords, callback) {
+  
+};
+
 module.exports = {
   fetchCoordsByIP,
   fetchMyIP
