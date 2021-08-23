@@ -9,19 +9,19 @@ const fetchCoordsByIP = function(body) {
 }
 
 const fetchISSFlyOverTimes = function(body) {
-  const flyOverTimes = JSON.parse(body)
-  return request(`http://api.open-notify.org/iss-pass.json?lat=${flyOverTimes.latitude}&lon=${flyOverTimes.longitude}`)
+  const geoLocation = JSON.parse(body)
+  return request(`http://api.open-notify.org/iss-pass.json?lat=${geoLocation.latitude}&lon=${geoLocation.longitude}`)
 }
 
-const nextISSTimesForMyLocation = function(body) {
-  return fetchmyIp()
-  .then(fetchCoordsByIP)
-  .then(fetchISSFlyOverTimes)
-  .then(body => {
-    const { response } = JSON.parse(body);
-    return response;
-  });
-}
+const nextISSTimesForMyLocation = function() {
+  return fetchMyIp()
+    .then(fetchCoordsByIP)
+    .then(fetchISSFlyOverTimes)
+    .then((data) => {
+      const { response } = JSON.parse(data);
+      return response;
+    });
+};
 
 module.exports = {
   nextISSTimesForMyLocation
